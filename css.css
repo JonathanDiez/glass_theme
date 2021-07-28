@@ -1,662 +1,771 @@
-
-/* DEFINE MAIN VARIABLES */
-
-.theme-dark {
-    --text-normal: rgb(255, 255, 255);
-    --header-primary: var(--text-normal);
-    --interactive-normal: var(--text-normal);
-    --interactive-hover: var(--text-normal);
-    --interactive-active: var(--text-normal);
-    --header-secondary: rgb(204, 204, 204);
-    --background-modifier-accent: rgb(187, 187, 187);
-    --text-muted: rgb(187, 187, 187);
-    --text-link: rgb(72, 222, 233);
-    --text-positive: rgb(98, 185, 67);
-    --text-positive-opacity: rgba(98, 255, 67, var(--opacity));
-    --interactive-muted: rgb(70, 70, 70);
-    --guild-header-text-shadow: none;
-    --normal-background: rgba(var(--background-color), var(--opacity));
-    --background-accent: var(--normal-background);
-    --background-primary: var(--normal-background);
-    --background-secondary: var(--normal-background);
-    --background-secondary-alt: var(--normal-background);
-    --background-tertiary: var(--normal-background);
-    --background-floating: var(--normal-background);
-    --scrollbar-auto-thumb: var(--normal-background);
-    --light-background: rgba(var(--background-color), var(--light-opacity));
-    --background-mentioned: var(--light-background);
-    --scrollbar-auto-track: var(--light-background);
-    --dark-background: rgba(var(--background-color), var(--dark-opacity));
-    --notification-color: 250, 100, 150;
-    --notification: rgb(var(--notification-color));
-    --notification-opacity: rgba(var(--notification-color), var(--dark-opacity));
-    --rainbow-gradient-width: 1px;
-    --rainbow-gradient: linear-gradient(135deg, rgba(255, 0, 0, 1) 0%, rgba(255, 162, 0, 1) 20%, rgba(255, 248, 0, 1) 40%, rgba(0, 255, 64, 1) 60%, rgba(0, 31, 255, 1) 80%, rgba(98, 0, 255, 1) 100%);
+/* 
+ * Yes, this codebase is near unreadable. Why?
+ * I designed this mainly as a test to see how viable avoidance of straight out class selectors would be.
+ * The codebase was never designed to be pretty, it was designed to require as little maintenance as possible.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&display=swap');
+@import url('https://mwittrien.github.io/BetterDiscordAddons/Themes/BlurpleRecolor/BlurpleRecolor.css');
+@import url('https://discord-custom-covers.github.io/usrbg/dist/usrbg.css');
+
+button {
+	--accentcolor: var(--accent-alt);
+}
+
+
+/* Root Variables */
+
+ :root {
+	--font-primary: 'Karla', sans-serif;
+	--font-display: var(--font-primary) !important;
+	/* Dark Matter Variables */
+	--avatar-size: 32px;
+	--background-image: url('https://i.imgur.com/7SbtKvw.png');
+	--home-image: url('https://i.imgur.com/233d55Y.gif');
+	--background-solid: #161921;
+	--background-solid-dark: #101218;
+	--background-solid-darker: #0c0e12;
+	--accent: 37, 172, 232;
+	--accent-alt: 29, 101, 134;
+	--black: 0, 0, 0;
+	--white: 255, 255, 255;
+	/* BlurpleRecolor */
+	--accentcolor: var(--accent);
+	--vaccentcolor-hover: rgb(var(--accent));
+	--vaccentcolor-active: rgb(var(--accent));
+}
+
+.theme-dark,
+.theme-light {
+	/* Discord vars */
+	--background-primary: var(--background-solid);
+	--background-mobile-primary: var(--background-primary);
+	--background-secondary: var(--background-solid);
+	--background-mobile-secondary: var(--background-secondary);
+	--background-secondary-alt: var(--background-solid);
+	--background-tertiary: var(--background-solid);
+	--background-floating: var(--background-solid);
+	--background-secondary: var(--background-solid);
+	--background-accent: var(--background-solid);
+	--background-message-hover: rgba(var(--black), 0.4);
+	--channeltextarea-background: transparent;
+	--activity-card-background: rgba(var(--white), 0.05);
+	--deprecated-store-bg: transparent;
+	--background-modifier-hover: rgba(var(--black), 0.3);
+	--background-modifier-active: rgba(var(--black), 0.3);
+	--background-modifier-selected: rgba(var(--black), 0.6);
+	--elevation-low: inset 0 -1px 0 0 rgba(var(--black), 0.3);
+	--channels-default: rgba(var(--white), 0.3);
+	--deprecated-quickswitcher-input-background: var(--background-solid);
+	--header-primary: rgba(var(--white), 1);
+	--header-secondary: rgba(var(--white), 0.6);
+	--text-normal: rgba(var(--white), 0.6);
+	--text-muted: #8a8e94;
+	--interactive-muted: rgba(var(--white), 0.15);
+	--interactive-normal: rgba(var(--white), 0.5);
+	--interactive-hover: rgba(var(--white), 0.75);
+	--interactive-active: rgba(var(--white), 1);
+	--deprecated-card-bg: rgba(var(--white), 0.05);
+	--text-link: rgba(var(--accent), 1);
+	--focus-primary: rgba(var(--accent), 1);
 }
 
-/* TITLE BAR */
-
-.titleBar-AC4pGV .wordmark-2iDDfm::after {
-    font-family: cursive;
-    letter-spacing: 1px;
-    content: var(--window-name);
-    position: absolute;
-    background: var(--window-name-color);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-size: 15px;
-    font-weight: bold;
-    top: 5px;
-    left: 5px;
-    width: 250px;
+ ::selection {
+	background-color: rgba(var(--accent-alt), 0.5);
 }
 
-/* BOUTON X O - */
-
-.winButton-iRh8-Z {
-    position: absolute;
-    top: 4px;
-}
 
-/* BUTTON X */
+/* Scrollbars */
 
-.winButton-iRh8-Z:nth-child(2) {
-    right: .5rem !important;
+ ::-webkit-scrollbar {
+	width: 14px !important;
 }
 
-/* CREATE CHANNEL */
-
-.modal-2VIBV8>* {
-    background-color: var(--normal-background) !important;
+ ::-webkit-scrollbar-thumb {
+	border-radius: 8px !important;
+	border: none !important;
+	border: 3px solid transparent !important;
+	background-color: rgba(var(--accent-alt), 1) !important;
 }
 
-/* BUTTON O */
-
-.winButton-iRh8-Z:nth-child(3) {
-    right: 2.5rem !important;
+ ::-webkit-scrollbar-track {
+	visibility: visible !important;
+	border-radius: 8px !important;
+	border: 3px solid transparent !important;
+	background-color: rgba(0, 0, 0, 0.3) !important;
+	background-clip: padding-box !important;
 }
-
-/* HOVER O */
 
-.winButton-iRh8-Z:nth-child(3):hover {
-    background-color: var(--normal-background);
+.none-2Eo-qx::-webkit-scrollbar {
+	display: none !important;
 }
 
-/* BUTTON - */
 
-.winButton-iRh8-Z:nth-child(4) {
-    right: 4.5rem !important;
-}
+/* Titlebar */
 
-/* HOVER - */
-
-.winButton-iRh8-Z:nth-child(4):hover {
-    background-color: var(--normal-background);
+div[class*="typeWindows-"] {
+	--background-modifier-hover: rgba(var(--white), 0.05);
+	--background-modifier-active: rgba(var(--white), 0.075);
+	height: 26px;
 }
-
-/* BIG PROFILE */
 
-.flex-1xMQg5.root-SR8cQa, .topSectionPlaying-1J5E4n {
-    background-color: var(--light-background) !important;
+div[class*="typeWindows-"]>div:first-child {
+	display: none;
 }
 
-/* CODEBLOCK TITLE */
-
-.bd-codeblock-language, .bd-codeblock-table>*>* {
-    border: none !important;
+div[class*="typeWindows-"]>div[role="button"] {
+	height: 30px;
+	width: 36px;
 }
-
-/* BIG PROFILE PLAYING SPOTIFY */
 
-.topSectionSpotify-1lI0-P {
-    background-color: var(--text-positive-opacity) !important;
+div[class*="typeWindows-"]::after {
+	content: 'Discord';
+	font-weight: 5000;
+	line-height: 31px;
+	color: var(--text-muted);
+	font-size: 14px;
+	position: absolute;
+	padding: 0 12px;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	background: rgba(var(--black), 0.85);
+	z-index: -1;
 }
 
-/* PROFILE BANNER */
 
-.profileBanner-33-uE1 {
-    opacity: var(--opacity);
-}
+/* Guilds */
 
-/* REMOVE DISCORD NAME TOP LEFT OF WINDOW */
-
-.wordmarkWindows-1v0lYD>* {
-    display: none;
+ul[data-list-id='guildsnav'] {
+	--background-secondary: var(--background-solid);
+    	--background-primary: rgba(var(--white), 0.1);
+	margin-bottom: 70px;
+	background-color: rgba(var(--black), 0.6);
+	border-right: 1px solid rgba(var(--black), 0.2);
+	box-shadow: inset -10px 0px 20px -10px rgba(var(--black), 0.3);
 }
-
-/* SEND MESSAGE, ADD FRIEND */
 
-.actionButton-3W1xZa {
-    background-color: transparent !important;
-    border: 2px solid var(--text-positive);
-    border-radius: 1rem;
-    color: var(--text-normal) !important;
+ul[data-list-id='guildsnav'] ::-webkit-scrollbar {
+	display: none;
 }
 
-/* MESSAGE OPTION */
-
-.item-1tOPte:hover, .focused-3afm-j {
-    background-color: var(--normal-background) !important;
+ul[data-list-id='guildsnav']>div[dir] {
+	padding-top: 18px;
 }
 
-/* BLUR BACKGROUND */
-
-.backdrop-1wrmKB {
-    background-color: var(--dark-background) !important;
+ul[data-list-id='guildsnav'] [class^="pill-"],
+ul[data-list-id='guildsnav'] [class^="pill-"]>div {
+	height: 40px !important;
 }
-
-/* LAUNCH STREAM */
 
-.focusLock-Ns3yie>*, .flex-1xMQg5 {
-    background-color: var(--dark-background) !important;
+ul[data-list-id='guildsnav'] div[style*="height: 56"],
+ul[id^="folder-items-"] {
+	height: auto !important;
 }
 
-/* IMAGES STATS */
-
-.imageDetails-1t6Zms {
-    background-color: transparent !important;
+ul[data-list-id='guildsnav'] [class^="pill-"] span {
+	width: 10px;
+	margin-left: -5px;
+	border-radius: 20px;
 }
 
-/* LAUNCH STREAM BUTTONS (cancel, go live) */
-
-.footer-2gL1pp, .container-OI6I9q {
-    justify-content: space-around !important;
+[data-list-id='guildsnav'] [class^="pill-"] span[style^="opacity: 1; height: 40"] {
+	--header-primary: rgba(var(--accent), 1);
 }
-
-/* BUTTON CHANGE STREAM */
 
-.changeButton-278ZT6 {
-    background-color: var(--normal-background) !important;
+span[class^="expandedFolderBackground-"] {
+	--background-secondary: rgba(var(--black), 0.25);
+	border-radius: 14px;
+	width: 40px;
+	left: 16px;
 }
 
-/* NO BORDER ROUND CHANNEL LIST */
-
-.base-3dtUhz, .sidebar-2K8pFh {
-    border-radius: 0 !important;
-    padding-right: 0rem !important;
-    border-radius: 0 !important;
+.wrapper-25eVIn {
+	zoom: .83334;
 }
-
-/* SERVER LIST PADDING */
 
-.wrapper-3NnKdC {
-    padding: 0px;
+svg[class^="placeholderMask-"] {
+	width: 40px;
+	height: 40px;
 }
 
-/* UPLOAD FILE BACKGROUND */
-
-.uploadModal-2ifh8j {
-    background-color: var(--normal-background) !important;
+div[data-list-item-id="guildsnav___home"] {
+	background: var(--home-image) top center/110% no-repeat;
 }
 
-/* UPLOAD FILE INNER BACKGROUND */
-
-.uploadModal-2ifh8j>.inner-3nWsbo {
-    background-color: transparent !important;
+div[class^="unreadMentionsIndicatorBottom-"] {
+	bottom: 70px;
 }
-
-/* ADD ROLES LIST BACKGROUND */
 
-.animatorTop-2Y7x2r {
-    background-color: var(--dark-background) !important;
-    border-radius: 1rem !important;
+#app-mount [data-list-item-id="guildsnav___home"]>div {
+	color: transparent;
+	background-color: transparent;
 }
 
-/* BOTTOM LEFT TEXT (voice buttons) */
-
-.noWrap-3jynv6 {
-    background-color: transparent !important;
+div[data-list-item-id="guildsnav___create-join-button"],
+div[data-list-item-id="guildsnav___guild-discover-button"] {
+	transition: 150ms ease;
+	opacity: 0.5;
+	background-color: var(--background-solid) !important;
+	color: rgba(var(--white), 0.3) !important;
+	border: 1px dashed rgba(var(--white), 0.3);
+	border-radius: 50px;
 }
 
-/* ADD ROLES LIST BORDER */
-
-.animatorTop-2Y7x2r>* {
-    border: none !important;
-    border-radius: 1rem !important;
+div[data-list-item-id="guildsnav___create-join-button"]:hover,
+div[data-list-item-id="guildsnav___guild-discover-button"]:hover {
+	opacity: 1;
 }
-
-/* AUTOCOMPLETE (EMOJIS) */
 
-.autocompleteInner-zh20B_, .base-1pYU8j:hover {
-    background-color: var(--dark-background) !important;
-}
 
-/* PROFILE CONNECTIONS */
+/* Sidebar */
 
-.connectedAccount-36nQx7 {
-    border: none;
+.platform-win [class^="sidebar-"] {
+	border-radius: 0;
 }
 
-/* ROLES LIST PROFILE */
-
-.root-3-B5F3.flex-1O1GKY {
-    justify-content: center;
-    padding-left: 1px;
-    padding-right: 1px;
+div[class^="sidebar-"] nav,
+#private-channels {
+	background-color: transparent;
+	--background-tertiary: rgba(var(--black), 0.35);
 }
-
-/* ROLES LIST PROFILE BACKGROUND */
 
-.role-2irmRk {
-    border: solid 11px;
-    padding: 0 !important;
+div[class^="sidebar-"]>nav>div[class^="searchBar"] {
+	height: 54px;
 }
 
-/* USER SETTINGS */
-
-.layer-3QrUeG, .layers-3iHuyZ, .contentRegion-3nDuYy, .contentRegionScroller-26nc1e, .sidebarRegion-VFTUkN>* {
-    background-color: transparent !important;
+div[id^="members-"] {
+	--background-secondary: rgba(var(--black), 0.4);
+	--background-modifier-hover: rgba(var(--white), 0.07);
+	--background-modifier-active: var(--background-modifier-hover);
+	--background-modifier-selected: rgba(var(--white), 0.07);
 }
 
-/* USER SETTINGS TITLE */
-
-.header-2RyJ0Y {
-    color: var(--text-muted);
-    font-size: medium;
+div[id^="members-"]>div {
+	background-color: transparent;
 }
-
-/* NO GAME ACTIVITY DETECTED */
 
-.notDetected-33MY4s {
-    background-color: transparent !important;
+div[id^="members-"] [class*="placeholder"] {
+	--backgorund-primary: var(--text-normal);
 }
 
-/* CHANGE GAME ACTIVITY NAME / FOCUSED GAME ACTIVITY */
-
-.gameNameInput-385LoS:focus, .gameNameInput-385LoS:hover {
-    background-color: var(--normal-background) !important;
-    border-color: var(--normal-background) !important;
+div[class^='nowPlayingColumn'] {
+	--background-secondary: transparent;
+	--background-primary: rgba(var(--black), 0.5);
+	--background-modifier-hover: rgba(var(--white), 0.075);
 }
 
-/* GAME ACTIVITY HOVER */
-
-.game-1ipmAa:hover::before, .game-1ipmAa::before, .card-FDVird.active-nvdKfC:before, .card-FDVird:focus-within:before, .card-FDVird:hover:before {
-    background-color: transparent !important;
-    border: none !important;
-    background-color: transparent !important;
-    border: none !important;
+#channels div[class^="unread-"] {
+	--interactive-active: rgba(var(--accent), 1);
 }
-
-/* USER SETTINGS SECTION TITLE */
 
-.h5-18_1nd {
-    color: var(--text-muted) !important;
-}
 
-/* USER SETTINGS SELECTED TAB */
+/* Sidebar Header */
 
-.selected-3s45Ha, .premiumTabItem-1QTfBr[aria-selected=true] {
-    background-color: var(--normal-background) !important;
+div[class*='clickable-'][aria-expanded]>header {
+	height: 54px;
+	--background-accent: rgba(var(--accent), 1);
+	--background-modifier-hover: rgba(var(--black), 0.25);
 }
 
-/* REPLY BAR */
-
-.replyBar-1YLQ2F {
-    background-color: transparent !important;
-}
 
-/* NITRO TAB ICON */
+/* Outer containers */
 
-.premiumTabItem-1QTfBr>*>* {
-    fill: rgb(255, 255, 255) !important;
+#app-mount {
+	--background-tertiary: transparent;
+	--background-secondary: transparent;
+	background: var(--background-image) center/cover no-repeat;
 }
 
-/* USER SETTINGS HOVER TAB */
-
-.item-PXvHYJ:hover {
-    background-color: var(--light-background) !important;
+#app-mount>div[class^="app-"] {
+	--background-tertiary: transparent;
+	--background-secondary: rgba(var(--black), 0.7);
+	background-color: rgba(var(--black), 0.4);
 }
 
-/* INNER APP/WINDOW RADIUS */
-
-.layers-3iHuyZ {
-    border-radius: 1rem;
+nav+div [class^='sidebar-'],
+nav+div[class^='base-'] {
+	overflow: visible !important;
+	position: relative;
+	max-width: calc(100% - 72px);
 }
-
-/* APP/WINDOW PADDING */
 
-.app-2rEoOp {
-    padding: 1rem !important;
+nav+div[class^='base-'] > div[class^="notice"] {
+	border-radius: 0;
 }
 
-/* PROFILE BACKGROUND */
-
-.userPopout-3XzG_A {
-    background-color: var(--dark-background) !important;
+div[class^='base-']>div {
+	--background-secondary: rgba(var(--black), 0.7);
+	--background-tertiary: rgba(var(--white), 0.05);
+	--background-primary: rgba(var(--black), 0.8);
 }
-
-/* RIGHT PROFILE BACKGROUND */
 
-.animatorLeft-1EQxU0>.userPopout-3XzG_A {
-    background-color: transparent !important;
+#app-mount>div:not([class^="app-"]),
+.autocomplete-1vrmpx {
+	--background-primary: var(--background-solid);
+	--background-secondary: var(--background-solid-dark);
+	--background-secondary-alt: var(--background-solid-darker);
+	--background-tertiary: var(--background-solid-darker);
 }
 
-/* PROFILE HEADER */
 
-.headerTop-2cWpdB {
-    background: none !important;
-}
+/* Header */
 
-/* TEXTAREA USER PROFILE NOTES/MESSAGE */
-
-.input-cIJ7To {
-    padding: calc(2px + var(--rainbow-gradient-width)) !important;
+section[class*="themed-"] {
+	height: 54px;
+	box-shadow: var(--elevation-low);
+	--background-secondary: rgba(var(--white), 0.1);
 }
-
-/* FOCUSED USER PROFILE NOTES / MESSAGE */
 
-.input-cIJ7To.focused-1mmYsC, .input-cIJ7To:focus {
-    box-sizing: border-box;
-    border-width: var(--rainbow-gradient-width);
-    border-style: solid;
-    border-image: var(--rainbow-gradient) 1;
-    padding: 2px !important;
+section>div>a[href="https:https://support.discord.com"] {
+	display: none;
 }
 
-/* MESSAGE DIVIDE / SEPARATORS / TRANSACTION HISTORY SEPARATOR / BOTTOM LEFT USER PANEL */
-
-.divider-3_HH5L, .separator-2I32lJ, .game-1ipmAa, .divider-3573oO, .hoverablePayment-Yc6mK7, .paymentRow-2e7VM6, .container-6sXIoE, .container-1giJp5 {
-    border-color: rgb(150, 150, 150) !important;
-    /* rainbow or white : invert lines */
-    border-image: var(--rainbow-gradient) 1 !important;
-    border-image: none !important;
+section[class*="themed-"]::before,
+section[class*="themed-"] ::after {
+	content: none;
 }
 
-/* USER SETTINGS SEPARATOR */
-
-.separator-gCa7yv {
-    /* rainbow or white : invert lines */
-    background: var(--rainbow-gradient) !important;
-    background: rgb(150, 150, 150) !important;
+section div[class^="toolbar"]>div[role] {
+	margin: 0 4px;
+	transition: 150ms ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 3px;
+	width: 28px;
+	height: 28px;
 }
-
-/* GAME ACTIVITY LIST SEPARATOR */
 
-.game-1ipmAa {
-    box-shadow: none !important;
-    border-bottom: solid 1px;
+section div[class^="toolbar"]>div[role] svg {
+	width: 22px;
 }
 
-/* BILLING FOOTER */
-
-.card-3Qj_Yx {
-    background-color: var(--light-background) !important;
-    border: none !important;
+section div[class^="toolbar"]>div[role][class*="selected-"] {
+	background-color: rgba(var(--white), 0.1);
 }
 
-/* TRANSACTION HISTORY */
-
-.hoverablePayment-Yc6mK7, .verticalFit-waKLYN>*, .paymentRow-2e7VM6 {
-    background-color: transparent !important;
-}
 
-/* TRANSACTION DETAILS */
+/* Panels */
 
-.expandedInfo-3kfShd {
-    background-color: var(--normal-background) !important;
+div[class^='sidebar-']>section {
+	--background-primary: rgba(var(--white), 0.07);
+	--background-secondary: rgba(var(--white), 0.1);
+	--background-secondary-alt: rgba(var(--black), 0.95);
+	margin-bottom: 70px;
 }
 
-/* PAYMENT NAME */
-
-.description-HxwDO4 {
-    color: var(--text-normal) !important;
+div[class^='sidebar-']>section>div:last-child {
+	background-color: var(--background-secondary-alt);
+	box-sizing: border-box;
+	height: 70px;
+	padding: 0 18px;
+	width: calc(100% + 72px);
+	position: absolute;
+	left: -72px;
 }
-
-/* PAYMENT DETAILS */
 
-.subText-V8PTt8 {
-    text-align: center;
-    color: var(--text-muted);
-}
 
-/* (NEW) MESSAGE DIVIDE DATE */
+/* Content */
 
-.content-1o0f9g {
-    margin-bottom: 1rem;
-    background: none !important;
-    color: var(--text-normal);
+div[class^='chat'] {
+	--background-floating: rgba(var(--black), 0.5);
 }
 
-/* MESSAGE MENTION */
-
-.mentioned-xhSam7:hover {
-    background-color: var(--normal-background) !important;
+div[class^="container-"][id^="chat-messages-"] {
+	--background-modifier-hover: var(--background-solid-dark);
 }
-
-/* RIGHT CLICK IMAGE/USER */
 
-.menu-3sdvDG {
-    background-color: var(--dark-background) !important;
+div[class^='chat'] main form {
+	margin-top: 0;
 }
 
-/* MESSAGE DATE */
-
-.timestampInline-yHQ6fX {
-    color: var(--text-normal) !important;
-    opacity: 0.8;
+div[class^='chat'] main form::before {
+	content: none;
 }
 
-/* MEMBER LIST / MESSAGE TEXTAREA TRANSPARENT */
-
-.channelTextArea-rNsIhG>*:not(.bf-toolbar), .content-3YMskv {
-    background-color: transparent !important;
+div[data-list-id="chat-messages"] {
+	--background-primary: transparent;
+	--background-secondary: rgba(var(--white), 0.05);
+	--background-accent: rgba(var(--white), 0.1);
 }
-
-/* MESSAGE TEXTAREA */
 
-.channelTextArea-rNsIhG {
-    border-radius: 1.5rem !important;
+div[class^="channelTextArea-"] {
+	--background-secondary: transparent;
+	box-shadow: inset 0 0 0 2px rgba(var(--white), 0.1);
+	transition: 250ms ease;
+	margin-bottom: 24px;
+	margin-top: 12px;
+	border-radius: 5px;
 }
 
-/* MESSAGE LIST BOTTOM MASK */
-
-.messagesWrapper-1sRNjr {
-    margin-bottom: 8px;
+div[id^="chat-messages-"]+div:not([id]):last-child {
+	height: 8px;
 }
 
-/* SHADOW BUG LEFT MESSAGE TEXTAREA */
-
-.form-2fGMdU::before {
-    display: none;
+div[id^="chat-messages-"][class*="cozy-"] {
+	padding-left: calc(var(--avatar-size) * 2);
 }
-
-/* PROFILE TITLE CENTER (role/notes) */
 
-.bodyTitle-Y0qMQz {
-    text-align: center;
+div[id^="chat-messages-"] {
+	margin-left: 8px;
+	margin-right: 8px;
+	border-radius: 4px;
 }
 
-/* PROFILE ROLE LIST DELETE CROSS */
-
-.role-2irmRk:hover>.roleCircle-3xAZ1j {
-    background-color: transparent !important;
+div[id^="chat-messages-"]>div[class^="buttonContainer-"] {
+	transform: scale(.85);
+	top: 1px;
 }
-
-/* FRIENDS LIST HOVER ACTIVITY */
 
-.itemCard-v9viV7:hover {
-    background-color: var(--dark-background) !important;
+div[id^="chat-messages-"] {
+	--background-primary: rgba(var(--black), 0.5);
 }
 
-/* FRIENDS LIST HOVER ACTIVITY TYPE */
-
-.body-1ld4H7 {
-    background-color: transparent !important;
+div[id^="chat-messages-"]>div>[class^="avatar-"] {
+	margin-top: 6px;
+	width: var(--avatar-size);
+	height: var(--avatar-size);
 }
 
-/* SPEAKING COLOR */
-
-.border-3dQmSY.speaking-WDn8Wm {
-    box-shadow: none !important;
-    padding: 1rem;
-    border-width: 3px;
-    border-style: solid;
-    border-image: var(--rainbow-gradient) 1;
+div[id^="chat-messages-"][class*="cozy-"] div::before {
+	--gutter: 13px;
 }
-
-/* STREAM SELECT SCREEN TILES (hover) */
 
-.tile-2w4k5N>*>.flex-1xMQg5>*:hover {
-    box-shadow: none !important;
-    box-sizing: border-box;
-    border-width: 3px;
-    border-style: solid;
-    border-image: var(--rainbow-gradient) 1;
+.mention {
+	transition: 150ms ease;
+	color: rgba(var(--accent), 1) !important;
+	background-color: rgba(var(--accent), 0.3);
+	padding: 3px 5px;
+	border-radius: 5px;
 }
 
-/* VOICE USERS LIST */
-
-.tile-2gi3tr, .content-2Sfaij>.flex-1xMQg5, .inner-2O5YO7>.root-2VTZPJ.tile-2naSqK {
-    background-color: var(--light-background) !important;
+.mention:hover {
+	background-color: rgba(var(--accent), 0.3) !important;
 }
 
-/* VOICE USER CLEAR LIST */
-
-.noChat-18KtBD.video--KPXCT, .video--KPXCT {
-    background-color: var(--normal-background) !important;
+#app-mount .container-1D34oG {
+	background: var(--background-primary);
 }
-
-/* NO USER IN VOICE CHANNEL -> INVITE BUTTON */
 
-.outerButton-1CWJC->* {
-    background-color: var(--light-background);
+div[class*="barBase-"] {
+	padding-bottom: 0;
+	background-color: rgba(var(--accent-alt), 0.9);
 }
 
-/* NO USER IN VOICE CHANNEL -> HOVER INVITE BUTTON */
 
-.outerButton-1CWJC->*:hover {
-    background-color: var(--dark-background);
-}
+/* Codeblocks */
 
-/* STREAM VOICE LIST */
-
-.videoWrapper-2v09vt {
-    background-color: transparent !important;
+html pre {
+	border-radius: 0;
+	background: transparent;
+	border-color: rgba(255, 255, 255, 0.1);
 }
-
-/* REMOVE BASE STREAM TILES BORDER */
 
-.gradientTop-3UWg3T, .gradientBottom-3X4SdK {
-    box-shadow: none !important;
-    background: none !important;
+pre code.hljs {
+	border: none;
+	background-color: rgba(var(--white), 0.1);
+	color: rgba(var(--white), 0.7);
+	padding: 1em;
 }
 
-/* REMOVE HOVER SHADOW VOICE USER LIST */
-
-.callContainer-36WRfH>.root-217Brm>*>* {
-    box-shadow: none !important;
+html code.inline,
+html code.inline {
+	background: rgba(var(--white), 0.1);
+	color: rgba(var(--white), 0.7);
+	padding: 0.3em 0.6em;
+	border-radius: 3px;
 }
 
-/* SELECTED ELEMENT */
-
-.selected-1Tbx07 {
-    background-color: var(--dark-background) !important;
-}
 
-/* HYPESQUAD HOUSE BACKGROUND */
+/* Settings */
 
-.membershipDialog-rVL-t_ {
-    background-color: var(--light-background) !important;
-    border-radius: 1rem;
+div[aria-label*="_SETTINGS"],
+div[aria-label*="_DEBUG"] {
+	--background-primary: transparent;
+	--background-secondary: rgba(var(--black), 0.7);
 }
 
-/* RE-TAKE HYPESQUAD TEST */
+div[class^="sidebarRegionScroller-"]>nav {
+	--background-secondary: transparent;
+}
 
-.membershipDialogSwitchHousesAction-2a3eDg {
-    color: var(--text-link);
+div[class^="contentRegion-"] {
+	--background-primary: rgba(var(--black), 0.8);
 }
 
-/* RE-TAKE HYPESQUAD TEST HOVER */
+div[class^="contentRegion-"] div[style^="overflow: hidden scroll"] {
+	background-color: transparent;
+	--background-primary: rgba(var(--black), 0.1);
+	--background-secondary: rgba(var(--black), 0.2);
+	--background-secondary-alt: rgba(var(--black), 0.25);
+	--background-tertiary: rgba(var(--white), 0.1);
+}
 
-.membershipDialogSwitchHousesAction-2a3eDg:hover {
-    color: var(--text-link);
-    text-decoration: underline;
+div[aria-label*="_SETTINGS"] aside>div {
+	--background-primary: transparent;
 }
 
-/* MENTION/NOTIFICATION BADGE/BAR (bottom server list) */
+div[aria-label*="_SETTINGS"] aside>div::-webkit-scrollbar-track {
+	visibility: hidden !important;
+}
 
-.numberBadge-2s8kKX, .bar-30k2ka {
-    background-color: var(--notification-opacity) !important;
-    opacity: 1;
+.bd-addon-list {
+	--background-secondary: var(--background-solid);
+	--background-secondary-alt: var(--background-solid-dark);
 }
 
-/* MENTION/NOTIFICATION BAR HOVER */
 
-.bar-30k2ka:hover {
-    background-color: var(--notification) !important;
-    opacity: 1;
+/* Tab Bar */
+
+div[class*="topPill"],
+nav>div[role="tablist"],
+.bd-tab-bar {
+	--background-accent: rgba(var(--accent));
+	--background-modifier-hover: rgba(var(--white), 0.05);
+	--background-modifier-active: rgba(var(--white), 0.075);
+	--background-modifier-selected: rgba(var(--accent), 0.25);
 }
 
-/* DISCORD LOGO */
 
-.childWrapper-anI2G9 {
-    background-color: transparent !important;
+/* Server Discovery */
+
+div[class^="sidebar"]+[class^="pageWrapper"] {
+	--background-secondary: rgba(var(--black), 0.8);
+	background-color: var(--background-secondary);
 }
+
 
-/* DISCORD LOGO HOVER */
+/* Crash Page */
 
-.childWrapper-anI2G9:hover {
-    background-color: var(--normal-background) !important;
+div[class*="errorPage"] {
+	--background-secondary: rgba(var(--black), 0.7) !important;
 }
 
-/* MESSAGE HOVER */
 
-.message-2qnXI6:hover {
-    background-color: var(--light-background) !important;
+/* Tooltips */
+
+div[class^="tooltip-"] {
+	--background-floating: rgba(var(--accent-alt), 1);
+	--text-normal: #e0e0e0;
 }
 
-/* LOADING MESSAGES */
 
-.wrapper-1F5TKx {
-    background-color: var(--normal-background) !important;
-    color: var(--normal-background) !important;
-    border-radius: 10px;
-    margin: .2rem !important;
-}
+/* Buttons */
 
-/* BETTER DISCORD SETTINGS BUTTONS */
+button[class*="button-"][class*="color"],
+.bd-button {
+	--vaccentcolor: var(--accent-alt);
+}
 
 .bd-button {
-    background-color: var(--normal-background) !important;
+	--bd-blue: rgba(var(--accent-alt), 1);
 }
 
-/* BETTER DISCORD SETTINGS BUTTONS HOVER */
 
-.bd-button:hover {
-    background-color: var(--dark-background) !important;
+/* Context Menu */
+
+div[role="menuitem"] {
+	--vaccentcolor: var(--accent-alt);
 }
 
-.formattedSize-2PXVec {
-    color: var(--header-secondary) !important;
-    padding-left: .3rem;
+div[role="menuitem"]:active {
+	--vaccentcolor: var(--accent);
 }
 
-.bf-hover:before {
-    background-color: var(--normal-background) !important;
-    color: transparent !important;
+
+/* Depreceated Components */
+
+
+/* These use hardcoded colors, no need to bother with strange selectors */
+
+#app-mount .footer-2gL1pp,
+#app-mount .footer-3mqk7D {
+	background-color: var(--background-secondary);
+	box-shadow: none;
 }
 
-.placeholder-37qJjk {
-    color: var(--header-secondary) !important;
+#app-mount .root-1gCeng,
+#app-mount .addGamePopout-2RY8Ju,
+#app-mount .keyboardShortcutsModal-3piNz7,
+#app-mount .emojiAliasInput-1y-NBz .emojiInput-1aLNse,
+.perksModal-fSYqOq .perk-2WeBWW,
+#app-mount .uploadModal-2ifh8j,
+#app-mount .contentWrapper-3WC1ID,
+#app-mount .contentWarningPopout-n5JsIs {
+	background-color: var(--background-primary);
 }
 
-pre .hljs, .scrollableContainer-2NUZem, .container-1D34oG {
-    background-color: var(--normal-background) !important;
+#app-mount .codeRedemptionRedirect-1wVR4b,
+#app-mount .userSettingsVoice-iwdUCU .previewOverlay-2O7_KC,
+#app-mount .inset-3sAvek {
+	background-color: var(--background-tertiary);
+	border: none;
 }
 
-.headerBarContainer-31FKNA, .libraryHeader-3g95kE, .headerBar-1YYOfi {
-    background-color: var(--dark-background) !important;
+#app-mount .paymentPane-3bwJ6A,
+#app-mount .tierBody-x9kBBp,
+#app-mount .tierBody-16Chc9,
+#app-mount .barBackground-2EEiLw,
+#app-mount .body-3iLsc4,
+#app-mount .footer-1fjuF6,
+#app-mount .container-3ayLPN,
+#app-mount .colorPickerCustom-2CWBn2,
+#app-mount .tierMarkerBackground-3q29am,
+.css-3vaxre-menu,
+.css-dwar6a-menu,
+#app-mount .autocomplete-1vrmpx,
+.categoryHeader-O1zU94,
+#app-mount .popoutList-T9CKZQ,
+#app-mount .quickSelectPopout-X1hvgV,
+.colorable-1bkp8v.primaryDark-3mSFDl,
+.tile-2naSqK,
+.videoWrapper-2v09vt,
+#app-mount .spoilerText-3p6IlD.hidden-HHr2R9 {
+	background-color: var(--background-solid);
 }
 
-.applicationStore-1pNvnv, .nowPlayingColumn-2sl4cE>*, .nowPlayingColumn-2sl4cE, .stickyHeader-1pqx0j, .scroller-1JbKMe, .wrapper-1-Fsb8 {
-    background-color: transparent !important;
+#app-mount .expandedInfo-3kfShd,
+#app-mount .tierHeaderLocked-1a2opw,
+#app-mount .tierHeaderLocked-1s2JJz,
+#app-mount .headerNormal-T_seeN,
+#app-mount .focused-2bY0OD,
+.colorable-1bkp8v.primaryDark-3mSFDl:hover {
+	background-color: var(--background-solid-dark);
 }
 
-.scroller-3vODG7 {
-    background-color: white !important;
+#app-mount .payment-xT17Mq {
+	background-color: transparent;
+	border-bottom-color: rgba(var(--white), 0.025);
 }
 
-.itemCard-v9viV7 {
-    border: none;
+#app-mount .bottomDivider-1K9Gao,
+#app-mount .focused-2bY0OD {
+	border-bottom-color: var(--background-solid-dark);
+}
+
+#app-mount div[data-list-id="billing-history"],
+#app-mount .media-engine-video,
+.react-datepicker,
+.react-datepicker__header,
+.react-datepicker__day--outside-month,
+.react-datepicker__day--disabled {
+	background-color: transparent !important;
+}
+
+.react-datepicker__day--disabled {
+	opacity: .6;
+}
+
+#app-mount .react-datepicker__day {
+	border-top-color: var(--background-secondary);
+	border-left-color: var(--background-secondary);
+}
+
+#app-mount .background-3xPPFc,
+#app-mount .tierInProgress-3mBoXq {
+	color: var(--background-solid);
+}
+
+.option-96V44q:after {
+	content: none;
+}
+
+#app-mount .option-96V44q.selected-rZcOL-,
+#app-mount .selected-1Tbx07,
+#app-mount .quickSelectPopoutOption-opKBx9:hover,
+#app-mount .outer-1AjyKL.active-1xchHY,
+#app-mount .outer-1AjyKL.interactive-3B9GmY:hover {
+	background-color: var(--background-modifier-hover);
+}
+
+.css-3vaxre-menu,
+.tierMarker-5HkGJ_[style] {
+	border-color: rgba(var(--white), 0.025) !important;
+}
+
+#app-mount .searchAnswer-3Dz2-q,
+#app-mount .searchFilter-2ESiM3,
+#app-mount .option-1B5ZV8,
+#app-mount .pill-2pQByF {
+	background-color: rgba(var(--accent-alt), 1);
+	color: #fff;
+}
+
+#app-mount .keybindShortcut-1BD6Z1 span {
+	background: var(--background-solid-dark);
+	box-shadow: inset 0 -4px 0 var(--background-solid-darker);
+}
+
+#app-mount .perksModal-fSYqOq {
+	background: rgba(var(--black), 0.7);
+}
+
+#app-mount .card-FDVird:before {
+	background: var(--background-modifier-hover);
+	border: none;
+}
+
+
+/* Login Page */
+
+div[class^="splashBackground"] canvas,
+div[class^="splashBackground"] img {
+	display: none;
+}
+
+/* USRBG */
+
+/*
+ * USRBG User-Popout Implimentation
+ * 
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+*/
+
+.userPopout-3XzG_A {
+	overflow: hidden;
+	transform: translateZ(0) !important;
+	--USRBG-banner-height: 60px;
+}
+
+.userPopout-3XzG_A[style*="-user-"] {
+	--USRBG-banner-height: 120px;
+	--USRBG-avatar-offset: 76px;
+}
+
+.userPopout-3XzG_A[style*="-user-"] .profileBanner-33-uE1 {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: var(--user-popout-position, center) center;
+	background-image: var(--user-background);
+}
+
+.userPopout-3XzG_A[style*="-user-"] .profileBanner-33-uE1 {
+	height: var(--USRBG-banner-height, 120px);
+}
+
+.userPopout-3XzG_A[style*="-user-"] .avatarWrapperNormal-2tu8Ts {
+  	top: var(--USRBG-avatar-offset, 76px);
+}
+
+.userPopout-3XzG_A:not([style*="-user-"]) .avatar-22FtUu,
+.userPopout-3XzG_A:not([style*="-user-"]) .avatarHint-1E3LMl{
+	z-index: 1;
+}
+
+.userPopout-3XzG_A:not([style*="-user-"]) .avatar-22FtUu::after {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+	height: var(--USRBG-banner-height, 0px);
+	pointer-events: none;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: var(--user-popout-position, center) center;
+	background-image: var(--user-background);
 }
